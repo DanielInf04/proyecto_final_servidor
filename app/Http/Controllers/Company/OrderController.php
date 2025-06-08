@@ -24,6 +24,7 @@ class OrderController extends Controller
         $query = $empresa->pedidosEmpresa()
             ->with([
                 'pedido.contactoEntrega',
+                'pedido.direccion.poblacion.provincia',
                 'detalles.producto.imagenes'
             ]);
 
@@ -47,6 +48,21 @@ class OrderController extends Controller
                     'fecha_pedido' => $pedidoEmpresa->pedido->fecha_pedido,
                     'nombre_completo' => optional($pedidoEmpresa->pedido->contactoEntrega, function($contacto) {
                         return $contacto->nombre . ' ' . $contacto->apellidos;
+                    }),
+                    'direccion_entrega' => optional($pedidoEmpresa->pedido->direccion, function ($direccion) {
+                        return [
+                            'calle' => $direccion->calle,
+                            'puerta' => $direccion->puerta,
+                            'piso' => $direccion->piso,
+                            'codigo_postal' => $direccion->codigo_postal,
+                            'pais' => $direccion->pais,
+                            'poblacion' => optional($direccion->poblacion, function ($poblacion) {
+                                return [
+                                    'nombre' => $poblacion->nombre,
+                                    'provincia' => optional($poblacion->provincia)->nombre,
+                                ];
+                            }),
+                        ];
                     }),
                 ],
                 'productos' => $pedidoEmpresa->detalles->map(function ($detalle) use ($rutaImagenes) {
