@@ -18,7 +18,7 @@ return new class extends Migration
             //$table->decimal('monto', 8, 2);
             $table->enum('estado', ['pendiente', 'pagado', 'fallido'])->default('pendiente');
             $table->string('metodo_pago'); // tarjeta, Paypal...
-            $table->dateTime('fecha_pago')->nullable();
+            //$table->dateTime('fecha_pago')->nullable();
 
             // Referencia al ID de la transacción
             $table->string('referencia')->nullable();

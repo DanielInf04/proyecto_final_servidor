@@ -15,6 +15,8 @@ Route::middleware(['auth:api', 'is_client'])->prefix('user')->group(function () 
     Route::get('/profile', [ProfileController::class, 'getProfile']);
     Route::put('/profile', [ProfileController::class, 'updateProfile']);
 
+    Route::get('/address-default', [DireccionController::class, 'defaultAddress']);
+
     Route::get('/orders', [UserOrderController::class, 'userOrders']);
     Route::get('/orders/{id}', [UserOrderController::class, 'getOrderById']);
     

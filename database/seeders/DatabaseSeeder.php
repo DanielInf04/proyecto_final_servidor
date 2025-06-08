@@ -14,6 +14,7 @@ use Database\Seeders\MasterData\PoblacionSeeder;
 use Database\Seeders\Coupons\CouponSeeder;
 use Database\Seeders\Products\ProductosSeeder;
 use Database\Seeders\Products\ProductosImagenesSeeder;
+use Database\Seeders\Orders\OrdersSeeder;
 
 class DatabaseSeeder extends Seeder
 {
@@ -32,7 +33,8 @@ class DatabaseSeeder extends Seeder
             PoblacionSeeder::class,
             CouponSeeder::class,
             ProductosSeeder::class,
-            ProductosImagenesSeeder::class
+            ProductosImagenesSeeder::class,
+            OrdersSeeder::class
         ]);
     }
 }

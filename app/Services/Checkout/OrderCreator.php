@@ -54,6 +54,7 @@ class OrderCreator
 
         // 3. Asignar dirección al cliente si lo ha solicitado
         if ($request->guardar_direccion) {
+            //\Log::info("Guardar direccion", ['guardar_direccion' => $request->guardar_direccion]);
             if (is_null($direccion->cliente_id)) {
                 $direccion->cliente_id = $cliente->id;
                 $direccion->save();
@@ -139,7 +140,7 @@ class OrderCreator
             'pedido_id' => $pedido->id,
             'metodo_pago' => $request->metodo_pago,
             'estado' => 'pagado',
-            'fecha_pago' => now(),
+            //'fecha_pago' => now(),
             'referencia' => $request->paypal['id'] ?? null,
         ]);
 
